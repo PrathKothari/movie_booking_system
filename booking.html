@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Movie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Book a Movie</h1>
+            <form action="{{ url_for('logout') }}" method="post" class="logout-form">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+
+        {% for movie in movies %}
+        <div class="movie">
+            <h2>{{ movie[2] }}</h2>
+            <p><strong>Director:</strong> {{ movie[4] }}</p>
+            <p><strong>Cast:</strong> {{ movie[5] }}</p>
+            <p><strong>Budget:</strong> {{ movie[6] }}</p>
+            <p><strong>Duration:</strong> {{ movie[7] }} hours</p>
+            <p><strong>Rating:</strong> {{ movie[8] }}</p>
+             <form action="{{ url_for('book_movie', movie_id=movie[1]) }}" method="post">
+                <input type="hidden" name="movie_id" value="{{ movie[1] }}">
+                <button type="submit" class="book-button">Book</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

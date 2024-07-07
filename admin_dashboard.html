@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Admin Dashboard</h1>
+            <form action="{{ url_for('logout') }}" method="post" class="logout-form">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash {{ messages[0][0] }}">
+                    {{ messages[0][1] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="form-section">
+            <h2>Manage Movies</h2>
+
+            <div class="form-group">
+                <!-- Add Movie Form -->
+                <form method="POST" action="{{ url_for('admin_dashboard') }}">
+                    <h3>Add Movie</h3>
+                    <input type="text" name="movie_id" placeholder="Movie ID" required>
+                    <input type="text" name="movie_name" placeholder="Movie Name">
+                    <input type="text" name="release_date" placeholder="Release Date">
+                    <input type="text" name="director" placeholder="Director">
+                    <input type="text" name="cast" placeholder="Cast">
+                    <input type="text" name="budget" placeholder="Budget">
+                    <input type="text" name="duration" placeholder="Duration">
+                    <input type="text" name="rating" placeholder="Rating">
+                    <button type="submit" name="add_movie" class="btn">Add Movie</button>
+                </form>
+            </div>
+
+            <div class="form-group">
+                <!-- Delete Movie Form -->
+                <form method="POST" action="{{ url_for('admin_dashboard') }}">
+                    <h3>Delete Movie</h3>
+                    <input type="text" name="movie_id" placeholder="Movie ID" required>
+                    <button type="submit" name="delete_movie" class="btn">Delete Movie</button>
+                </form>
+            </div>
+
+            <div class="form-group">
+                <!-- Update Movie Form -->
+                <form method="POST" action="{{ url_for('admin_dashboard') }}">
+                    <h3>Update Movie</h3>
+                    <input type="text" name="movie_id" placeholder="Movie ID" required>
+                    <input type="text" name="movie_name" placeholder="New Movie Name">
+                    <input type="text" name="release_date" placeholder="New Release Date">
+                    <input type="text" name="director" placeholder="New Director">
+                    <input type="text" name="cast" placeholder="New Cast">
+                    <input type="text" name="budget" placeholder="New Budget">
+                    <input type="text" name="duration" placeholder="New Duration">
+                    <input type="text" name="rating" placeholder="New Rating">
+                    <button type="submit" name="update_movie" class="btn">Update Movie</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Current Bookings</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>User ID</th>
+                        <th>Movie ID</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking[0] }}</td>
+                        <td>{{ booking[1] }}</td>
+                        <td>{{ booking[2] }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('delete_booking', booking_id=booking[0]) }}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-section">
+            <h2>Registered Users</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user[0] }}</td>
+                        <td>{{ user[1] }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('delete_user', user_id = user[0]) }}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
