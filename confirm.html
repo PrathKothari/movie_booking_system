@@ -9,16 +9,21 @@
 <body>
     <div class="container">
         <h1>Booking Confirmed!</h1>
-        <p><strong>Movie:</strong> {{ movie[1] }}</p>
-        <p><strong>Release Date:</strong> {{ movie[2] }}</p>
-        <p><strong>Director:</strong> {{ movie[3] }}</p>
-        <p><strong>Cast:</strong> {{ movie[4] }}</p>
-        <p><strong>Budget:</strong> {{ movie[5] }}</p>
-        <p><strong>Duration:</strong> {{ movie[6] }} hours</p>
-        <p><strong>Rating:</strong> {{ movie[7] }}</p>
+        <p><strong>Movie:</strong> {{ movie[2] }}</p>
+        <p><strong>Release Date:</strong> {{ movie[3] }}</p>
+        <p><strong>Director:</strong> {{ movie[4] }}</p>
+        <p><strong>Cast:</strong> {{ movie[5] }}</p>
+        <p><strong>Budget:</strong> {{ movie[6] }}</p>
+        <p><strong>Duration:</strong> {{ movie[7] }} hours</p>
+        <p><strong>Rating:</strong> {{ movie[8] }}</p>
+        <p><strong>Price:</strong> {{ movie[9] }}</p>
+
         <form action="{{ url_for('booking_page') }}">
             <button type="submit" class="button">Back to Booking Page</button>
         </form>
+        <form action="{{ url_for('transactions') }}">
+                <button type="submit" class="button">View Transactions</button>
+            </form>
     </div>
 </body>
 </html>
