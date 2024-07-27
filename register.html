@@ -25,6 +25,15 @@
             </div>
             <button type="submit">Register</button>
         </form>
+        <!-- Flash messages section -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash {{ messages[0][0] }}">
+                    {{ messages[0][1] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <!-- Back to Login button -->
         <form action="{{ url_for('login') }}" method="get">
             <button type="submit" class="button">Back to Login</button>
         </form>
