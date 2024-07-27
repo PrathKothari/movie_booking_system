@@ -1,4 +1,4 @@
-# online_movie_booking
+#
 # Online Movie Booking System
 
 An online movie booking system built using Flask, SQLite, HTML, CSS, and Python. The system allows users to register, login, book movies, and view their bookings. Admins have additional functionalities to manage movies and users.
