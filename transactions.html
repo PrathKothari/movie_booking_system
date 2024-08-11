@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Transactions</title>
+</head>
+<body>
+    <div class="container">
+        <h1>My Transactions</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Movie Name</th>
+                    <th>Movie ID</th>
+                    <th>Transaction Date</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction[0] }}</td>
+                        <td>{{ transaction[1] }}</td>
+                        <td>{{ transaction[2] }}</td>
+                        <td>{{ transaction[3] }}</td>
+                        <td>{{ transaction[4] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="{{ url_for('booking_page') }}">
+                <button type="submit" class="button">Back to Booking Page</button>
+            </form>
+    </div>
+</body>
+</html>
