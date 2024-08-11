@@ -1,0 +1,94 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>My Bookings</title>-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div class="container">-->
+<!--        <div class="header">-->
+<!--            <h1>My Bookings</h1>-->
+<!--            <form action="{{ url_for('transactions') }}">-->
+<!--                <button type="submit" class="button">View Transactions</button>-->
+<!--            </form>-->
+<!--            <form action="{{ url_for('booking_page') }}">-->
+<!--                <button type="submit" class="button">Back to Booking Page</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Flash messages &ndash;&gt;-->
+<!--        {% with messages = get_flashed_messages(with_categories=true) %}-->
+<!--            {% if messages %}-->
+<!--                <div class="flash {{ messages[0][0] }}">-->
+<!--                    {{ messages[0][0] }}-->
+<!--                </div>-->
+<!--            {% endif %}-->
+<!--        {% endwith %}-->
+<!--        <div class="bookings-list">-->
+<!--            {% for booking in bookings %}-->
+<!--                <div class="booking-item">-->
+<!--                    <h2>{{ movies[loop.index0].movie_name }}</h2>-->
+<!--                    <p><strong>Director:</strong> {{ movies[loop.index0].director }}</p>-->
+<!--                    <p><strong>Cast:</strong> {{ movies[loop.index0].cast }}</p>-->
+<!--                    <p><strong>Budget:</strong> {{ movies[loop.index0].budget }}</p>-->
+<!--                    <p><strong>Duration:</strong> {{ movies[loop.index0].duration }}</p>-->
+<!--                    <p><strong>Rating:</strong> {{ movies[loop.index0].rating }}</p>-->
+<!--                    <form method="POST" action="{{ url_for('cancel_booking') }}">-->
+<!--                        <input type="hidden" name="booking_id" value="{{ booking.id }}">-->
+<!--                        <button type="submit" class="btn btn-danger">Cancel Booking</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>My Bookings</h1>
+            <form action="{{ url_for('transactions') }}">
+                <button type="submit" class="button">View Transactions</button>
+            </form>
+            <form action="{{ url_for('booking_page') }}">
+                <button type="submit" class="button">Back to Booking Page</button>
+            </form>
+        </div>
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash {{ messages[0][0] }}">
+                    {{ messages[0][0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <div class="bookings-list">
+            {% for booking, movie in booking_movie_pairs %}
+                <div class="booking-item">
+                    <h2>{{ movie.movie_name }}</h2>
+                    <p><strong>Director:</strong> {{ movie.director }}</p>
+                    <p><strong>Cast:</strong> {{ movie.cast }}</p>
+                    <p><strong>Budget:</strong> {{ movie.budget }}</p>
+                    <p><strong>Duration:</strong> {{ movie.duration }}</p>
+                    <p><strong>Rating:</strong> {{ movie.rating }}</p>
+                    <form method="POST" action="{{ url_for('cancel_booking') }}">
+                        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                        <button type="submit" class="btn btn-danger">Cancel Booking</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
