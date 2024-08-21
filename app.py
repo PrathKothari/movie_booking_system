@@ -149,7 +149,7 @@ def logout():
 
 
 def get_db_connection():
-    db_path = 'C:/Users/PRATHAM/PycharmProjects/movie-booking/database/movie_booking.db'
+    db_path = './database/movie_booking.db'
     print(f"Database path: {os.path.abspath(db_path)}")
     print(f"Database exists: {os.path.exists(db_path)}")
     conn = sqlite3.connect(db_path)
