@@ -1,7 +1,3 @@
-Here is the README file for your Flask application:
-
----
-
 # Movie Booking System
 
 ## Overview
