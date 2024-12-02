@@ -162,5 +162,3 @@ The application includes sample movie data for demonstration purposes. The sampl
 This project is licensed under the MIT License.
 
 ---
-
-Enjoy using the Movie Booking System! If you encounter any issues, please feel free to open an issue on the repository.
