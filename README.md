@@ -91,7 +91,7 @@ Open your web browser and navigate to `http://127.0.0.1:5000/` to access the app
 
 | Column             | Type    | Description                     |
 |--------------------|---------|---------------------------------|
-| id                 | INTEGER | Primary key, auto-increment     |
+| user_id            | INTEGER | Primary key, auto-increment     |
 | username           | TEXT    | Unique                          |
 | password           | TEXT    | Hashed password                 |
 | is_admin           | INTEGER | 1 for admin, 0 for regular user |
@@ -134,7 +134,7 @@ Open your web browser and navigate to `http://127.0.0.1:5000/` to access the app
 | Column     | Type      | Description                 |
 |------------|-----------|-----------------------------|
 | id         | INTEGER   | Primary key, auto-increment |
-| username   | TEXT      | Username                    |
+| user_id    | INTEGER   | Foreign Key                 |
 | changed_at | TIMESTAMP | Timestamp of change         |
 
 ## Triggers
